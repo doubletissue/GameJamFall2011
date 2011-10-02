@@ -1,8 +1,10 @@
 from __future__ import division
 import math, random, os
 import pygame
+from pygame.locals import *
 
 from item import Item
+from pygame.locals import *
 from gate import Gate
 
 
