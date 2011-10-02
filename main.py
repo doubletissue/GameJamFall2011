@@ -9,6 +9,7 @@ from character import Character
 from menu import Menu
 
 winScreen = pygame.image.load(os.path.join("Art","Main Menu", "winscreen.png"))
+pauseScreen = pygame.image.load(os.path.join("Art","Main Menu", "winscreen.png"))
 
 def main():
   pygame.init()
