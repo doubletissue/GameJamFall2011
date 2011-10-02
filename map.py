@@ -183,7 +183,7 @@ class Map:
     if (x,y) in self.gate and self.gate[ (x,y) ].check_color(color):
       return True
     elif (x,y) in self.gate:
-      screen.blit(pygame.image.load(os.path.join("Art","Main Menu","losescreen.png"), (0,0))
+      self.screen.blit(pygame.image.load(os.path.join("Art","Main Menu","losescreen.png")), (0,0))
       pygame.display.flip()
       while True:
         for e in pygame.event.get():
