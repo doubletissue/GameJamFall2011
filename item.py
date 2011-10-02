@@ -5,24 +5,9 @@ import pygame
 colors = range(12)
 
 images = [
-            [
-              pygame.image.load(os.path.join("Art","Items","apple_0_0.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_1.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_2.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_3.png"))
-            ],
-            [
-              pygame.image.load(os.path.join("Art","Items","apple_0_0.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_1.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_2.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_3.png"))
-            ],
-            [
-              pygame.image.load(os.path.join("Art","Items","apple_0_0.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_1.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_2.png")),
-              pygame.image.load(os.path.join("Art","Items","apple_0_3.png"))
-            ]
+            pygame.image.load(os.path.join("Art","apple.png")),
+            pygame.image.load(os.path.join("Art","circlebanana.png")),
+            pygame.image.load(os.path.join("Art","giantblueberry.png"))
          ]
 
 class Item:
@@ -30,10 +15,10 @@ class Item:
   def __init__(self, type_id):
     self.color = colors[type_id]
     self.image = images[type_id]
-    self.health = 3
+    self.health = 2
   
   def draw(self,screen,pos):
-    screen.blit(self.image[self.health],pos)
+    screen.blit(self.image,pos)
     
   def hit(self):
     if self.health == 0:
