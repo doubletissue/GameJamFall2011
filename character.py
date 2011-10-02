@@ -20,7 +20,7 @@ class Character(object):
     self.model = model_down
 
   def draw( self, screen ):
-    screen.blit( self.image, (self.position.real*40, self.position.imag*40) )
+    screen.blit( self.image, (self.position.real*25, self.position.imag*25) )
 
   def move( self, direction ):
     self.model = models[direction]
