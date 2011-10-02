@@ -21,9 +21,9 @@ left = complex(-1,0)
 #models = {up:models_up, down:models_down, right:models_right, left:models_left}
 
 models_down = [pygame.image.load(os.path.join("Art","player","player_d_" + str(i) + ".png")) for i in range(0,12,2) + [-1] ]
-models_up = models_down
-models_right = models_down
-models_left = models_down
+models_up = [pygame.image.load(os.path.join("Art","player","player_u_" + str(i) + ".png")) for i in range(0,12,2) + [-1] ]
+models_left = [pygame.image.load(os.path.join("Art","player","player_r_" + str(i) + ".png")) for i in range(0,12,2) + [-1] ]
+models_right = [pygame.transform.flip(pygame.image.load( os.path.join("Art","player","player_r_" + str(i) + ".png")), True, False) for i in range(0,12,2) + [-1] ]
 
 models = {up:models_up, down:models_down, right:models_right, left:models_left}
 
