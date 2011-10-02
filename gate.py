@@ -2,7 +2,7 @@ from color import mix_colors
 import pygame
 import os
 
-animation_scale = 100
+animation_scale = 3
 
 def load_gate( color, position, phase ):
   return pygame.image.load(os.path.join("Art","Gates","gate_" + str(color) +  "_" + str(position) + str(phase) + ".png"))
