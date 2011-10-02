@@ -26,4 +26,4 @@ class Gate( object ):
 
   def draw( self, screen ):
     screen.blit( self.model[phase/animation_scale], self.position )
-    phase = (phase + 1) % 3*animation_scale
+    self.phase = (self.phase + 1) % 3*animation_scale
