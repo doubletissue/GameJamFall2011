@@ -24,13 +24,13 @@ def main():
     key = pygame.key.get_pressed()
     
     if key[K_UP]:
-      pass
+      character.move_up()
     elif key[K_DOWN]:
-      pass
+      character.move_down()
     elif key[K_LEFT]:
-      pass
+      character.move_left()
     elif key[K_RIGHT]:
-      pass
+      character.move_right()
     
     game_map.draw(screen)
     
