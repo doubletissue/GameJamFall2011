@@ -11,7 +11,7 @@ model_up = pygame.image.load(os.path.join("Art","player_up.png"))
 model_down = pygame.image.load(os.path.join("Art","player_down.png"))
 model_right= pygame.image.load(os.path.join("Art","player_right.png"))
 model_left = pygame.image.load(os.path.join("Art","player_left.png"))
-models = {up:model_up, down:model_down, left:model_right, right:model_left}
+models = {up:model_up, down:model_down, right:model_right, left:model_left}
 
 class Character(object):
   def __init__( self, world, x, y ):
@@ -21,12 +21,12 @@ class Character(object):
     self.model = model_down
 
   def draw( self, screen ):
-    screen.blit( self.image, (self.position.real*25, self.position.imag*25) )
+    screen.blit( self.model, (self.position.real*40, self.position.imag*40) )
 
   def move( self, direction ):
     self.model = models[direction]
     new_position = self.position + direction
-    if world.walkable( new_position.real, new_position.imag, self.color ):
+    if self.world.walkable( new_position.real, new_position.imag, self.color ):
       self.position = new_position
 
   def attack( self, direction ):
@@ -34,25 +34,25 @@ class Character(object):
     self.color = world.hit( attack_position.re, attack_position.im, self.color ) + self.color
 
   def move_up( self ):
-    self.move( self, up )
+    self.move( up )
 
   def move_down( self ):
-    self.move( self, down )
+    self.move( down )
 
   def move_left( self ):
-    self.move( self, left )
+    self.move( left )
 
   def move_right( self ):
-    self.move( self, right )
+    self.move( right )
 
   def attack_up( self ):
-    self.attack( self, up )
+    self.attack( up )
 
   def attack_down( self ):
-    self.attack( self, down )
+    self.attack( down )
 
   def attack_left( self ):
-    self.attack( self, left )
+    self.attack( left )
 
   def attack_right( self ):
-    self.attack( self, right )
+    self.attack( right )
