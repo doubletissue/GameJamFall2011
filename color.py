@@ -17,26 +17,21 @@ def translate_color( color_id ):
   else:
     return pygame.Color( 255, 255, 255 )
 
-class Color( object ):
-  def __init__( self, color=None ):
-    if( color == None ):
-      color = -1
-    self.color = color
-
-  def __add__( self, other ):
-    if other.color == -1:
-      rv = self.color
-    elif self.color == -1:
-      rv = other.color
-    else:
-      difference = other.color - self.color
-      if abs(difference) == 6:
-        rv = white
-      elif difference > 0:
-        if difference < 6:
-          rv = (other.color - (difference / 2)) % 12
-        else:
-          rv = (other.color + ((12 - difference) / 2)) % 12
+def mix_colors( first, second ):
+  if second == -1 or first == second:
+    return first
+  elif first == -1:
+    return second
+  else:
+    difference = second - first
+    if abs(difference) in [1,11]:
+      return second
+    if abs(difference) == 6:
+      return white
+    elif difference > 0:
+      if difference < 6:
+        return (second - (difference / 2)) % 12
       else:
-        rv = other + self
-    return Color(rv)
+        return (second + ((12 - difference) / 2)) % 12
+    else:
+      return mix_colors( second, first )

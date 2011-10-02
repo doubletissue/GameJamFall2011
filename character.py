@@ -1,6 +1,6 @@
 import os
 import pygame
-from color import Color
+from color import mix_colors, white
 from map import Map
 
 up = complex(0,-1)
@@ -14,17 +14,17 @@ model_right= pygame.image.load(os.path.join("Art","player_right.png"))
 model_left = pygame.image.load(os.path.join("Art","player_left.png"))
 models = {up:model_up, down:model_down, right:model_right, left:model_left}
 
-#models_up = [pygame.image.load(os.path.join("Art","player_up_" + str(i) + ".png")) for i in range(12) + [-1] ]
-#models_down = [pygame.image.load(os.path.join("Art","player_down_" + str(i) + ".png")) for i in range(12) + [-1] ]
-#models_left = [pygame.image.load(os.path.join("Art","player_left_" + str(i) + ".png")) for i in range(12) + [-1] ]
-#models_right = [pygame.image.load(os.path.join("Art","player_right_" + str(i) + ".png")) for i in range(12) + [-1] ]
+#models_up = [pygame.image.load(os.path.join("Art","player_u_" + str(i) + ".png")) for i in range(12) + [-1] ]
+#models_down = [pygame.image.load(os.path.join("Art","player_d_" + str(i) + ".png")) for i in range(12) + [-1] ]
+#models_left = [pygame.image.load(os.path.join("Art","player_l_" + str(i) + ".png")) for i in range(12) + [-1] ]
+#models_right = [pygame.image.load(os.path.join("Art","player_r_" + str(i) + ".png")) for i in range(12) + [-1] ]
 #models = {up:models_up, down:models_down, right:models_right, left:models_left}
 
 class Character(object):
   def __init__( self, world, x, y ):
     self.world = world
     self.position = complex( x, y )
-    self.color = Color()
+    self.color = white
     self.model = model_down
 
   def draw( self, screen ):
@@ -41,7 +41,7 @@ class Character(object):
     #self.model = models[direction][self.color]
     self.model = models[direction]
     attack_position = self.position + direction
-    self.color = Color( self.world.hit( int(attack_position.real), int(attack_position.imag) ) ) + self.color
+    self.color = mix_colors( self.color, self.world.hit( int(attack_position.real), int(attack_position.imag) ) )
 
   def move_up( self ):
     self.move( up )
