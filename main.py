@@ -15,22 +15,26 @@ def main():
   game_map = Map(0)
   player = Character( game_map, 1, 1 )
   
+  prevKeys = {}
+  
   while True:
-    clock.tick(60)
+    clock.tick(30)
     for e in pygame.event.get():
       if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
         pygame.quit()
         return
     key = pygame.key.get_pressed()
     
-    if key[K_UP]:
+    if key[K_UP] and not prevKeys[K_UP]:
       player.move_up()
-    elif key[K_DOWN]:
+    elif key[K_DOWN] and not prevKeys[K_DOWN]:
       player.move_down()
-    elif key[K_LEFT]:
+    elif key[K_LEFT] and not prevKeys[K_LEFT]:
       player.move_left()
-    elif key[K_RIGHT]:
+    elif key[K_RIGHT] and not prevKeys[K_RIGHT]:
       player.move_right()
+    
+    prevKeys = key
     
     game_map.draw(screen)
     player.draw(screen)
