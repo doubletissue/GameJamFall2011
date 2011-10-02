@@ -23,25 +23,20 @@ def main():
         return
     key = pygame.key.get_pressed()
     
+    if key[K_up]:
+      pass
+    elif key[K_down]:
+      pass
+    elif key[K_left]:
+      pass
+    elif key[K_right]:
+      pass
+    
     game_map.draw(screen)
     
     
     
     pygame.display.flip()
-    
-    
-    #if key[K_1]:
-      #Bird.difficulty = 3
-    #if key[K_2]:
-      #Bird.difficulty = 2.25
-    #if key[K_3]:
-      #Bird.difficulty = 1.5
-    #if key[K_4]:
-      #Bird.difficulty = 1
-    #if key[K_5]:
-      #Bird.difficulty = .5
-    
-    #if key[K_m]:
 
 
 main()  
