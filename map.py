@@ -115,7 +115,6 @@ def generateFloor(num_points,xLim,yLim):
       pos += 1
       continue
     m[ (x,y) ] = c
-    print x,y, c
     if (x+1,y) not in queue and (x+1,y) not in m and x+1 < xLim:
       queue.append( ((x+1,y), c) )
     if (x-1,y) not in queue and (x-1,y) not in m and x-1 >= 0:
@@ -183,7 +182,7 @@ class Map:
           self.items[ (x,y) ] = Item(2)
     
   def walkable(self,x,y,color):
-    return int(self.tiles[x][y]) == 2
+    return int(self.tiles[x][y]) == 2 and self.shelves[x][y] == 0.0
   
   def hit(self,x,y):
     if not (x,y) in self.items:
