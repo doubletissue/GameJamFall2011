@@ -15,7 +15,8 @@ models_down = [[pygame.transform.rotate( load_gate(color, "R", phase), -90 ) for
 models = [models_left, models_up, models_right, models_down]
 
 class Gate( object ):
-  def __init__( self, color, orientation ):
+  def __init__( self, position, color, orientation ):
+    self.position = position
     self.color = color
     self.phase = 0
     self.model = models[orientation][color / 2]
@@ -24,5 +25,5 @@ class Gate( object ):
     return mix_colors( self.color, color ) == color
 
   def draw( screen ):
-    screen.blit( self.model[phase/animation_scale], self.position.real*40, self.position.imag*40) )
+    screen.blit( self.model[phase/animation_scale], self.position )
     phase = (phase + 1) % 3*animation_scale
