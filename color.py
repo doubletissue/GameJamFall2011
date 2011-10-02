@@ -29,7 +29,6 @@ class Color( object ):
     elif self.color == -1:
       return other.color
     difference = other.color - self.color
-    print "Difference: ", difference
     if abs(difference) == 6:
       return white
     elif difference > 0:
