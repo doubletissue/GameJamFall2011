@@ -9,13 +9,11 @@ from character import Character
 from menu import Menu
 
 winScreen = pygame.image.load(os.path.join("Art","Main Menu", "winscreen.png"))
-pauseScreen = pygame.image.load(os.path.join("Art","Main Menu", "winscreen.png"))
-
-pygame.mixer.music.load("rematch.mp3")
-pygame.mixer.music.play(-1)
 
 def main():
   pygame.init()
+  pygame.mixer.music.load("rematch.mp3")
+  pygame.mixer.music.play(-1)
   screen = pygame.display.set_mode((1000, 1000))
   clock = pygame.time.Clock()
   
