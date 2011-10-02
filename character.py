@@ -31,7 +31,8 @@ class Character(object):
     screen.blit( self.model, (self.position.real*40, self.position.imag*40) )
 
   def move( self, direction ):
-    self.model = models[direction][self.color]
+    #self.model = models[direction][self.color]
+    self.model = models[direction]
     new_position = self.position + direction
     if self.world.walkable( int(new_position.real), int(new_position.imag), self.color ):
       self.position = new_position
