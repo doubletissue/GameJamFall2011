@@ -25,6 +25,27 @@ def main():
         return
     key = pygame.key.get_pressed()
     
+<<<<<<< HEAD
+    if key[K_LSHIFT]:
+      if key[K_UP]:
+        player.attack_up()
+      elif key[K_DOWN]:
+        player.attack_down()
+      elif key[K_LEFT]:
+        player.attack_left()
+      elif key[K_RIGHT]:
+        player.attack_right()
+    else:
+      if key[K_UP]:
+        player.move_up()
+      elif key[K_DOWN]:
+        player.move_down()
+      elif key[K_LEFT]:
+        player.move_left()
+      elif key[K_RIGHT]:
+        player.move_right()
+      
+=======
     if key[K_UP] and not prevKeys[K_UP]:
       player.move_up()
     elif key[K_DOWN] and not prevKeys[K_DOWN]:
@@ -36,6 +57,7 @@ def main():
     
     prevKeys = key
     
+>>>>>>> 00e7688aee0a42334499a8848c4172352e37c2b2
     game_map.draw(screen)
     player.draw(screen)
     
