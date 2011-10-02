@@ -12,10 +12,10 @@ models_right = [[load_gate(color, "R", phase) for phase in range(1,4)] for color
 models_up = [[pygame.transform.rotate( load_gate(color, "L", phase), -90 ) for phase in range(1,4)] for color in range(0,12,2) ]
 models_down = [[pygame.transform.rotate( load_gate(color, "R", phase), -90 ) for phase in range(1,4)] for color in range(0,12,2) ]
 
-models = {"up":models_up, "down":models_down, "left":models_left, "right":models_right}
+models = [models_left, models_up, models_right, models_down]
 
 class Gate( object ):
-  def __init__( self, color, side, orientation ):
+  def __init__( self, color, orientation ):
     self.color = color
     self.phase = 0
     self.model = models[orientation][color / 2]
