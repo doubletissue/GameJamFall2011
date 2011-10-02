@@ -2,26 +2,27 @@ from color import mix_colors
 import pygame
 import os
 
-#models_up_down = [pygame.image.load(os.path.join("Art","gate_ud_" + str(i) + ".png")) for i in range(0,12,2) ]
-#models_left_right = [pygame.image.load(os.path.join("Art","gate_lr_" + str(i) + ".png")) for i in range(0,12,2)]
+animation_scale = 10
 
-models_up_down = [pygame.image.load(os.path.join("Art","player_up.png")) for i in range(0,12,2) ]
-models_left_right = [pygame.image.load(os.path.join("Art","player_left.png")) for i in range(0,12,2)]
+def load_gate( color, position, phase ):
+  return pygame.image.load(os.path.join("Art","Gates","gate_" + str(color) +  "_" + str(position) + str(phase) + ".png"))
 
-models = {"ud":models_up_down, "lr":models_left_right}
+models_left = [[load_gate(color, "L", phase) for phase in range(1,4)] for color in range(0,12,2) ]
+models_right = [[load_gate(color, "R", phase) for phase in range(1,4)] for color in range(0,12,2) ]
+models_up = [[pygame.transform.rotate( load_gate(color, "L", phase), -90 ) for phase in range(1,4)] for color in range(0,12,2) ]
+models_down = [[pygame.transform.rotate( load_gate(color, "R", phase), -90 ) for phase in range(1,4)] for color in range(0,12,2) ]
+
+models = {"up":models_up, "down":models_down, "left":models_left, "right":models_right}
 
 class Gate( object ):
-  def __init__( self, color, x, y, orientation ):
+  def __init__( self, color, side, orientation ):
     self.color = color
-    self.position = complex( x, y )
-    self.orientation = orientation
-    self.model = self.get_model()
+    self.phase = 0
+    self.model = models[orientation][color / 2]
 
-  def get_model( self ):
-    self.model = models[self.orientation][self.color / 2]
-
-  def none_shall_pass( self, color ):
+  def check_color( self, color ):
     return mix_colors( self.color, color ) == color
 
   def draw( screen ):
-    screen.blit( self.model, (self.position.real*40, self.position.imag*40) )
+    screen.blit( self.model[phase/animation_scale], self.position.real*40, self.position.imag*40) )
+    phase = (phase + 1) % 3*animation_scale
