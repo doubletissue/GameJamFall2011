@@ -5,14 +5,15 @@ import math, random
 import sys
 
 from map import Map
-
+from character import Character
 
 def main():
   pygame.init()
   screen = pygame.display.set_mode((1000, 1000))
   clock = pygame.time.Clock()
   
-  game_map = Map(0)
+  game_map = Map()
+  player = character( game_map, 0, 0 )
   
   while True:
     clock.tick(60)
