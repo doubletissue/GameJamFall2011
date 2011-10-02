@@ -1,5 +1,6 @@
 import pygame
 from color import Color
+from map import Map
 
 up = complex(0,-1)
 down = complex(0,1)
