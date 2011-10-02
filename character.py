@@ -1,3 +1,4 @@
+import os
 import pygame
 from color import Color
 from map import Map

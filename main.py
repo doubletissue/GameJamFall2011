@@ -12,7 +12,7 @@ def main():
   screen = pygame.display.set_mode((1000, 1000))
   clock = pygame.time.Clock()
   
-  game_map = Map()
+  game_map = Map(0)
   player = character( game_map, 0, 0 )
   
   while True:
@@ -33,6 +33,7 @@ def main():
       character.move_right()
     
     game_map.draw(screen)
+    player.draw(screen)
     
     
     
