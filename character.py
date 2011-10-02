@@ -1,6 +1,6 @@
 import os
 import pygame
-from color import Color, translate_color
+from color import Color
 from map import Map
 
 up = complex(0,-1)
@@ -38,8 +38,10 @@ class Character(object):
       self.position = new_position
 
   def attack( self, direction ):
+    #self.model = models[direction][self.color]
+    self.model = models[direction]
     attack_position = self.position + direction
-    self.color = translate_color( self.world.hit( int(attack_position.real), int(attack_position.imag) ) ) + self.color
+    self.color = Color( self.world.hit( int(attack_position.real), int(attack_position.imag) ) ) + self.color
 
   def move_up( self ):
     self.move( up )

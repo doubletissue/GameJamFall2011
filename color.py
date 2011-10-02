@@ -25,16 +25,18 @@ class Color( object ):
 
   def __add__( self, other ):
     if other.color == -1:
-      return self.color
+      rv = self.color
     elif self.color == -1:
-      return other.color
-    difference = other.color - self.color
-    if abs(difference) == 6:
-      return white
-    elif difference > 0:
-      if difference < 6:
-        return (other.color - (difference / 2)) % 12
-      else:
-        return (other.color + ((12 - difference) / 2)) % 12
+      rv = other.color
     else:
-      return other + self
+      difference = other.color - self.color
+      if abs(difference) == 6:
+        rv = white
+      elif difference > 0:
+        if difference < 6:
+          rv = (other.color - (difference / 2)) % 12
+        else:
+          rv = (other.color + ((12 - difference) / 2)) % 12
+      else:
+        rv = other + self
+    return Color(rv)
