@@ -26,7 +26,7 @@ class Character(object):
   def move( self, direction ):
     self.model = models[direction]
     new_position = self.position + direction
-    if self.world.walkable( new_position.real, new_position.imag, self.color ):
+    if self.world.walkable( int(new_position.real), int(new_position.imag), self.color ):
       self.position = new_position
 
   def attack( self, direction ):
