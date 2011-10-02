@@ -182,6 +182,14 @@ class Map:
   def walkable(self,x,y,color):
     if (x,y) in self.gate and self.gate[ (x,y) ].check_color(color):
       return True
+    elif (x,y) in self.gate:
+      screen.blit(pygame.image.load(os.path.join("Art","Main Menu","losescreen.png"), (0,0))
+      pygame.display.flip()
+      while True:
+        for e in pygame.event.get():
+          if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
+            pygame.quit()
+            return
     return self.tiles[x][y] >= 20 and self.tiles[x][y] < 30 and self.shelves[x][y] == 0
   
   def hit(self,x,y):
@@ -205,6 +213,7 @@ class Map:
     return (x*40,y*40)
     
   def draw(self,screen):
+    self.screen = screen
     for x in range(25):
       for y in range(25):
         screen.blit(self.getTileImage(x,y),self.getDrawPos(x,y))
