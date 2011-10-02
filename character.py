@@ -33,7 +33,7 @@ class Character(object):
     self.color = world.hit( attack_position.re, attack_position.im, self.color ) + self.color
 
   def move_up( self ):
-    self.move( self, up) )
+    self.move( self, up )
 
   def move_down( self ):
     self.move( self, down )
