@@ -4,11 +4,7 @@ import pygame
 
 colors = range(12)
 
-images = [
-            [ pygame.image.load(os.path.join("Art","Items", "1_" + str(i) + ".png")) for i in range(0,4) ],
-            [ pygame.image.load(os.path.join("Art","Items", "2_" + str(i) + ".png")) for i in range(0,4) ],
-            [ pygame.image.load(os.path.join("Art","Items", "3_" + str(i) + ".png")) for i in range(0,4) ]
-         ]
+images = [ [ pygame.image.load(os.path.join("Art","Items", str(j) + "_" + str(i) + ".png")) for i in range(4) ] for j in range(12) ]
 
 class Item:
   

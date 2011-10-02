@@ -2,11 +2,13 @@ from __future__ import division
 import pygame
 from pygame.locals import *
 import math, random
-import sys
+import sys,os
 
 from map import Map
 from character import Character
 from menu import Menu
+
+winScreen = pygame.image.load(os.path.join("Art","Main Menu", "winscreen.png"))
 
 def main():
   pygame.init()
@@ -14,7 +16,7 @@ def main():
   clock = pygame.time.Clock()
   
   game_map = Map(0)
-  player = Character( game_map, 1, 1 )
+  player = Character( game_map, 23, 1 )
   
   prevKeys = {}
   
@@ -71,6 +73,14 @@ def main():
         player.move_left()
       elif key[K_RIGHT] and not prevKeys[K_RIGHT]:
         player.move_right()
+    
+    while game_map.isWin(player.position.real, player.position.imag):
+      screen.blit(winScreen,(0,0))
+      pygame.display.flip()
+      for e in pygame.event.get():
+        if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
+          pygame.quit()
+          return
     
     prevKeys = key
     game_map.draw(screen)
