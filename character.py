@@ -39,7 +39,7 @@ class Character(object):
 
   def attack( self, direction ):
     attack_position = self.position + direction
-    self.color = self.world.hit( int(attack_position.real), int(attack_position.imag), self.color ) + self.color
+    self.color = self.world.hit( int(attack_position.real), int(attack_position.imag) ) + self.color
 
   def move_up( self ):
     self.move( up )
