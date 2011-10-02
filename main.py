@@ -6,6 +6,7 @@ import sys
 
 from map import Map
 from character import Character
+from menu import Menu
 
 def main():
   pygame.init()
@@ -17,7 +18,34 @@ def main():
   
   prevKeys = {}
   
+  menu = Menu()
   while True:
+    for e in pygame.event.get():
+      if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
+        pygame.quit()
+        return
+    key = pygame.key.get_pressed()
+    
+    if key[K_DOWN] and not prevKeys[K_DOWN]:
+      menu.move(1)
+    if key[K_UP] and not prevKeys[K_UP]:
+      menu.move(-1)
+    if key[K_RETURN] and not prevKeys[K_RETURN]:
+      r = menu.select()
+      if r == -1:
+        pygame.quit()
+        return
+      elif r == 1:
+        break
+        
+    prevKeys = key
+    
+    menu.draw(screen)
+    pygame.display.flip()
+    
+  
+  while True:
+    
     clock.tick(30)
     for e in pygame.event.get():
       if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
