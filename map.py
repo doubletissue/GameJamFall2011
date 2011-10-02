@@ -11,6 +11,9 @@ floor_image           = pygame.image.load(os.path.join("Art","floortile.png"))
 shelf_image           = pygame.image.load(os.path.join("Art","shelf.png"))
 red_floor_image       = pygame.image.load(os.path.join("Art","tile_red.png"))
 green_floor_image     = pygame.image.load(os.path.join("Art","tile_green.png"))
+blue_floor_image      = pygame.image.load(os.path.join("Art","tile_blue.png"))
+purple_floor_image    = pygame.image.load(os.path.join("Art","tile_purple.png"))
+yellow_floor_image    = pygame.image.load(os.path.join("Art","tile_yellow.png"))
 
 images = {
           0.1 :                          corner_image,
@@ -25,6 +28,9 @@ images = {
           
           2.1 : green_floor_image,
           2.2 : red_floor_image,
+          2.3 : blue_floor_image,
+          2.4 : yellow_floor_image,
+          2.5 : purple_floor_image,
           
           3.1 : shelf_image,
           3.2 : shelf_image,
@@ -94,6 +100,45 @@ maps = [
       ]
           
     
+def generateFloor(num_points,xLim,yLim):
+  m = {}
+  queue = []
+  pos = 0
+  for i in range(num_points):
+    p = (random.randint(0,xLim-1),random.randint(0,yLim-1) )
+    while p in queue:
+      p = (random.randint(0,xLim-1),random.randint(0,yLim-1) )
+    queue.append( (p,i) )
+  while pos < len(queue):
+    (x,y),c = queue[pos]
+    if (x,y) in m:
+      pos += 1
+      continue
+    m[ (x,y) ] = c
+    print x,y, c
+    if (x+1,y) not in queue and (x+1,y) not in m and x+1 < xLim:
+      queue.append( ((x+1,y), c) )
+    if (x-1,y) not in queue and (x-1,y) not in m and x-1 >= 0:
+      queue.append( ((x-1,y), c) )
+    if (x,y+1) not in queue and (x,y+1) not in m and y+1 < yLim:
+      queue.append( ((x,y+1), c) )
+    if (x,y-1) not in queue and (x,y-1) not in m and y-1 >= 0:
+      queue.append( ((x,y-1), c) )
+  return m
+
+def floorPatternToKey(n):
+  if n == 0:
+    return 2.1
+  if n == 1:
+    return 2.2
+  if n == 2:
+    return 2.3
+  if n == 3:
+    return 2.4
+  if n == 4:
+    return 2.5
+
+
 
 class Map:
   
@@ -101,6 +146,7 @@ class Map:
     #self.tiles = maps[level]
     self.shelves = shelf_maps[level]
     self.tiles = {}
+    floor_pattern = generateFloor(20,25,25)
     for x in range(25):
       self.tiles[x]={}
       for y in range(25):
@@ -124,7 +170,7 @@ class Map:
         elif y is 24:
           self.tiles[x][y] = 1.2
         else:
-          self.tiles[x][y] = random.choice( [2.1,2.2] ) 
+          self.tiles[x][y] = floorPatternToKey(floor_pattern[ (x,y) ]%5 ) 
     
     self.items = {}
     for x in range(25):
@@ -136,7 +182,16 @@ class Map:
         elif self.shelves[x][y] == 3.4:
           self.items[ (x,y) ] = Item(2)
     
-        
+  def walkable(self,x,y,color):
+    return int(self.tiles[x][y]) == 2
+  
+  def hit(self,x,y):
+    if not (x,y) in self.items:
+      return -1
+    dead = self.items[ (x,y) ].hit()
+    if not dead:
+      return -1
+    return self.items[ (x,y) ].color
         
   
   def getShelfImage(self,x,y):
