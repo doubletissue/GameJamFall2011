@@ -46,10 +46,10 @@ class Character(object):
       self.position = new_position
 
   def attack( self, direction ):
+    self.color = mix_colors( self.color, self.world.hit( int(attack_position.real), int(attack_position.imag) ) )
     self.model = models[direction][self.color/2]
     #self.model = models[direction]
     attack_position = self.position + direction
-    self.color = mix_colors( self.color, self.world.hit( int(attack_position.real), int(attack_position.imag) ) )
 
   def move_up( self ):
     self.move( up )
