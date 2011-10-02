@@ -22,13 +22,13 @@ def main():
         return
     key = pygame.key.get_pressed()
     
-    if key[K_up]:
+    if key[K_UP]:
       pass
-    elif key[K_down]:
+    elif key[K_DOWN]:
       pass
-    elif key[K_left]:
+    elif key[K_LEFT]:
       pass
-    elif key[K_right]:
+    elif key[K_RIGHT]:
       pass
     
     game_map.draw(screen)
