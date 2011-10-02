@@ -12,8 +12,8 @@ blue = 8
 white = -1
 
 def translate_color( color_id ):
-  if 0 <= self.color < 12:
-    return colorwheel[self.color]
+  if 0 <= color_id < 12:
+    return colorwheel[color_id]
   else:
     return pygame.Color( 255, 255, 255 )
 
