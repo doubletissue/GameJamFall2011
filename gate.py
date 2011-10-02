@@ -25,6 +25,5 @@ class Gate( object ):
     return mix_colors( self.color, color ) == color
 
   def draw( self, screen ):
-    screen.blit( self.model[phase/animation_scale], self.position )
+    screen.blit( self.model[self.phase/animation_scale], self.position )
     self.phase = (self.phase + 1) % (3*animation_scale)
-    print self.phase
